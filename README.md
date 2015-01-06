@@ -14,7 +14,7 @@ By default, the container starts and fully configure TYPO3 Flow, incl. setting a
 Launch required containers:
 
 ```
-docker run -d --name=db --env="MARIADB_PASS=my-pass" tutum/mariadb
+docker run -d --name=db --env="MARIADB_PASS=my-pass" million12/mariadb
 docker run -d --name=flow -p=8080:80 --link=db:db --env="T3APP_VHOST_NAMES=flow dev.flow" million12/typo3-flow
 ```
 
@@ -63,7 +63,7 @@ It is very easy to run unit, functional and Behat tests against TYPO3 Flow with 
 
 Here's how you can run all tests:  
 ```
-docker run -d --name=db --env="MARIADB_PASS=my-pass" tutum/mariadb
+docker run -d --name=db --env="MARIADB_PASS=my-pass" million12/mariadb
 docker run -d --name=flow-testing --link=db:db --env="T3APP_VHOST_NAMES=behat.dev.flow" --env="T3APP_DO_INIT_TESTS=true" --env="T3APP_DO_INIT=false" million12/typo3-flow
 
 # Wait till Flow container is fully provisioned (docker logs -f flow-testing). Then launch tests:
