@@ -9,10 +9,10 @@ dependencies:
     - docker pull million12/mariadb
     - docker pull million12/typo3-flow-neos-abstract
     - docker pull million12/php-testing
-    
+
   override:
     - docker build --tag=million12/typo3-flow .
-    
+
   post:
     # Launch DB backend
     - docker run -d --name=db --env="MARIADB_PASS=my-pass" million12/mariadb
@@ -20,15 +20,15 @@ dependencies:
         background: true
 
 # Run tests
-test:    
+test:
   override:
     # ####################################################
-    # Run the TYPO3 Flow container and do some basic tests
+    # Run the Flow container and do some basic tests
     # ####################################################
     - docker run -d --name=flow -p=8000:80 --link=db:db --env="T3APP_NAME=flow" million12/typo3-flow
     - docker logs -f flow > ${CIRCLE_ARTIFACTS}/docker-flow.log:
         background: true
-    # Wait till TYPO3 Flow is fully configured
+    # Wait till Flow is fully configured
     - while true; do if grep "nginx entered RUNNING state" ${CIRCLE_ARTIFACTS}/docker-flow.log; then break; else sleep 1; fi done
     # Test: do basic front-end tests
     - curl -L --head http://flow:8000 && curl -s -L http://flow:8000
@@ -38,8 +38,8 @@ test:
     - docker run -ti --volumes-from=flow million12/php-testing "su www -c \"cd && ls -al flow\""
     # Clean up
     - docker rm -f flow || true
-    
-    
+
+
     # ###################################################################
     # Launch Flow container again, but do only initialisation for testing
     # ###################################################################
@@ -52,7 +52,7 @@ test:
       docker run -ti --volumes-from=flow-testing --link=flow-testing:web --link=db:db million12/php-testing "
         su www -c \"
           cd ~/typo3-app && \
-          echo -e '\n\n======== RUNNING TYPO3 FLOW TESTS =======\n\n' && \
+          echo -e '\n\n======== RUNNING FLOW TESTS =======\n\n' && \
           bin/phpunit -c Build/BuildEssentials/PhpUnit/UnitTests.xml && \
           bin/phpunit -c Build/BuildEssentials/PhpUnit/FunctionalTests.xml
         \"
