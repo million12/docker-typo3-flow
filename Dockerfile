@@ -3,7 +3,7 @@ MAINTAINER Marcin Ryzycki marcin@m12.io
 
 # ENV: Repository for installed TYPO3 Flow distribution 
 ENV \
-  T3APP_BUILD_REPO_URL="git://git.typo3.org/Flow/Distributions/Base.git" \
+  T3APP_BUILD_REPO_URL="https://github.com/neos/flow-base-distribution.git" \
   T3APP_BUILD_BRANCH=3.0
 
 # Pre-install TYPO3 Flow
