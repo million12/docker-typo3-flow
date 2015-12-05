@@ -7,7 +7,7 @@ It is an example of how you can build your own TYPO3 Flow installation, perhaps 
  
 This container contains PHP/Nginx setup. You will need a separate container with database. See the instructions below.
 
-**CAVEAT:** by default, this image contain development (master) version of Flow. To switch to different release, edit `T3APP_BUILD_BRANCH` (can be: branch name or tag name) in Dockerfile and re-build the image. See the [flow.typo3.org](http://flow.typo3.org/) website or [git repository](https://git.typo3.org/Flow/Distributions/Base.git) for info about latest stable version.
+**CAVEAT:** by default, this image contain development (master) version of Flow. To switch to different release, edit `T3APP_BUILD_BRANCH` (can be: branch name or tag name) in Dockerfile and re-build the image. See the [flow.typo3.org](http://flow.typo3.org/) website or [git repository](https://github.com/neos/flow-base-distribution) for info about latest stable version.
 
 ## Usage
 
